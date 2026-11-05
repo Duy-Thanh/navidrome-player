@@ -1,0 +1,34 @@
+# Copy this file to config.toml and fill in your details.
+#   cp config.example.toml config.toml
+#
+# Or use environment variables (these take precedence over the file):
+#   NAVIDROME_URL, NAVIDROME_USER, NAVIDROME_PASS,
+#   NAVIDROME_FFPLAY, NAVIDROME_MPV, NAVIDROME_BACKEND,
+#   NAVIDROME_VOLUME, NAVIDROME_CONFIG
+
+[server]
+url = "http://192.168.1.100:4533"
+username = "nekkochan"
+password = "your_password"
+timeout = 10
+
+[streaming]
+# Make Navidrome send the original audio (bit-perfect), without re-encoding:
+format = "raw"       # "raw" = original. "" = let the server decide. "mp3"/"opus" = force transcode.
+max_bitrate = 0      # 0 = unlimited (original). e.g. 320 = cap at 320 kbps.
+
+[player]
+backend = "auto"            # auto | mpv | ffplay  (auto: prefer mpv, fall back to ffplay)
+mpv_path = "mpv"            # mpv supports runtime pause/seek/volume over IPC
+ffplay_path = "ffplay"      # used when mpv is unavailable (limited features)
+volume = 100                # 0-100
+extra_args = []             # extra player flags, e.g. ["--af=bass=g=5"] (mpv)
+
+[ui]
+page_size = 50              # tracks loaded per request
+default_source = "random"   # random | newest | frequent | recent | starred
+theme_dark = true
+show_clock = true
+accent = "cyan"
+success = "green"
+error = "red"
